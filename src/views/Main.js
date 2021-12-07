@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import Navbar from '../components/Navbar';
-import Contact from './Contact';
-import Home from './Home';
-import { Routes, Route, useMatch } from 'react-router-dom';
-import PostSingle from './PostSingle';
+import React from 'react'
+import { Route, Routes } from 'react-router'
+import { Navbar } from '../components/Navbar'
+import { Contact } from './Contact'
+import { Home } from './Home'
+import { PostSingle } from './PostSingle';
 
-export default function Main() {
+export const Main = ( props ) => {
     return (
         <React.Fragment>
             <header>
@@ -14,9 +14,9 @@ export default function Main() {
 
             <main className="container">
                 <Routes>
-                    <Route exact path='/' element={ <Home /> } />
-                    <Route exact path='/contact' element={ <Contact /> } />
-                    <Route path="/blog/:id" element={<PostSingle />}  />
+                    <Route exact path='/' element={<Home posts={ props.posts } />} />
+                    <Route exact path='/contact' element={<Contact />} />
+                    <Route path="/blog/:id" element={<PostSingle />} />
                 </Routes>
             </main>
 
