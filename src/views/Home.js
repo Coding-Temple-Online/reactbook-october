@@ -11,32 +11,6 @@ export default class Home extends Component {
 
         console.log('component constructed')
     }
-    // posts = [
-    //     {
-    //         id: 1,
-    //         body: 'This is the first post',
-    //         user: {
-    //             id: 1,
-    //             emailAddress: 'lucasl@codingtemple.com'
-    //         }
-    //     },
-    //     {
-    //         id: 2,
-    //         body: 'This is the second post',
-    //         user: {
-    //             id: 1,
-    //             emailAddress: 'lucasl@codingtemple.com'
-    //         }
-    //     },
-    //     {
-    //         id: 3,
-    //         body: 'This is the third post',
-    //         user: {
-    //             id: 3,
-    //             emailAddress: 'derekh@codingtemple.com'
-    //         }
-    //     },
-    // ]
 
     componentDidMount() {
         console.log('component mounted')

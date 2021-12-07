@@ -1,20 +1,34 @@
-import React, { Component } from 'react'
-import { useParams } from 'react-router';
+import React, { Component, useState, useEffect } from 'react'
+import { useMatch } from 'react-router';
 import Post from '../components/Post'
 
-export default class PostSingle extends Component {
-    constructor() {
-        super();
-        console.log(this)
-    }
-    // params = useParams();
+export default function PostSingle() {
 
-    render() {
-        // console.log( this.params );
-        return (
-            <React.Fragment>
-                {/* <Post /> */}
-            </React.Fragment>
-        )
-    }
+    const match = useMatch("/blog/:id")
+    const id = match.params.id
+    const [postState, setPostState] = useState({})
+    const [postLoadedState, setPostLoadedState] = useState("LOADING")
+
+    useEffect(function() {
+        fetch( '/posts.json' )
+            .then( res => res.json() )
+            .then( data => {
+                let post = data.filter((currPost) => {
+                    return id == currPost.id
+                })[0]
+
+                setPostState(post)
+                setPostLoadedState("LOADED")
+            })
+    }, [id])
+
+    return (
+        <React.Fragment>
+            {
+                postLoadedState === "LOADED" ? 
+                <Post p={postState} /> : 
+                <p>LOADING...</p>
+            }
+        </React.Fragment>
+    )
 }

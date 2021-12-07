@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Post extends Component {
     
@@ -9,7 +10,7 @@ export default class Post extends Component {
 
         return (
             <li className="list-group-item">
-                <p><a href=".">{ p.body }</a></p>
+                <p><Link to={{pathname: `/blog/${p.id}`}}>{ p.body }</Link></p>
                 <p>
                     <cite>&mdash; { p.user.emailAddress }</cite>
                     <span className="float-right">
