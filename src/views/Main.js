@@ -5,7 +5,7 @@ import { Contact } from './Contact'
 import { Home } from './Home'
 import { PostSingle } from './PostSingle';
 
-export const Main = ( props ) => {
+export const Main = () => {
     return (
         <React.Fragment>
             <header>
@@ -14,7 +14,7 @@ export const Main = ( props ) => {
 
             <main className="container">
                 <Routes>
-                    <Route exact path='/' element={<Home posts={ props.posts } />} />
+                    <Route exact path='/' element={<Home />} />
                     <Route exact path='/contact' element={<Contact />} />
                     <Route path="/blog/:id" element={<PostSingle />} />
                 </Routes>

@@ -1,7 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 export const Navbar = () => {
+    const { currentUser, signIn, logOut } = useAuth();
+
+    const handleLogin = () => {
+        // alert( 'it works' );
+        signIn();
+    }
+
+    const handleLogout = () => {
+        logOut();
+    }
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             <Link className="navbar-brand" to="/">Reactbook</Link>
@@ -24,6 +36,20 @@ export const Navbar = () => {
                             <Link className="dropdown-item" to=".">Cart</Link>
                         </div>
                     </li>
+                </ul>
+                <ul className="navbar-nav ml-auto">
+                    {
+                        !currentUser.loggedIn
+                            ?
+                        <li className="nav-item">
+                            <a onClick={ handleLogin } href="#" className="nav-link">Login</a>
+                        </li>
+                            
+                            :
+                        <li className="nav-item">
+                            <a onClick={ handleLogout } href="#" className="nav-link">Logout</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>
