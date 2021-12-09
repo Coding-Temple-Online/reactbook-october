@@ -42,12 +42,12 @@ export const Navbar = () => {
                         !currentUser.loggedIn
                             ?
                         <li className="nav-item">
-                            <a onClick={ handleLogin } href="#" className="nav-link">Login</a>
+                            <Link onClick={ handleLogin } to="." className="nav-link">Login</Link>
                         </li>
                             
                             :
                         <li className="nav-item">
-                            <a onClick={ handleLogout } href="#" className="nav-link">Logout</a>
+                            <Link onClick={ handleLogout } to="." className="nav-link">Logout</Link>
                         </li>
                     }
                 </ul>

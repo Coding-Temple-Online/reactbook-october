@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import 'firebase/firestore';
-import 'firebase/auth';
+import 'firebase/auth'
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -10,6 +10,7 @@ const firebaseConfig = {
     storageBucket: "reactbook-october-derek.appspot.com",
     messagingSenderId: "686617177261",
     appId: "1:686617177261:web:630dbf1f8d0f10306c6a24",
+    // eslint-disable-next-line
     measurementId: "${config.measurementId}"
 };
 

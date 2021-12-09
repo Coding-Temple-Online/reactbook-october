@@ -1,5 +1,5 @@
 import { doc, getDoc, getFirestore } from '@firebase/firestore';
-import React, { Component, useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useMatch } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Post } from '../components/Post';
@@ -21,7 +21,7 @@ export const PostSingle = () => {
             setPostState( docSnapshot.data() );
             setPostLoadedState( 'LOADED' );
 
-        }, [ db ]
+        }, [ docRef ]
     )
 
     useEffect(() =>

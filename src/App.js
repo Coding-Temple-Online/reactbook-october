@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { Main } from './views/Main';
+// eslint-disable-next-line
 import firebase from './firebase'
-import { collection, getDocs, getFirestore } from '@firebase/firestore';
 
 export const App = () => {
   return (

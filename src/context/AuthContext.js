@@ -1,6 +1,6 @@
 import { browserLocalPersistence, getAuth, GoogleAuthProvider, onAuthStateChanged, setPersistence, signInWithPopup, signOut } from "@firebase/auth";
+import { doc, setDoc, getFirestore } from 'firebase/firestore';
 import { createContext, useContext, useEffect, useState } from "react";
-import firebase from "../firebase";
 
 export const AuthContext = createContext();
 
@@ -10,6 +10,8 @@ export function useAuth() {
 
 export const AuthProvider = ( {children} ) => {
     const [currentUser, setCurrentUser] = useState({ loggedIn: false });
+
+    const db = getFirestore();
 
     let auth = getAuth();
     let provider = new GoogleAuthProvider();
@@ -32,11 +34,12 @@ export const AuthProvider = ( {children} ) => {
 
                 signInWithPopup( auth, provider )
                     .then( result => {
-                        const credential = GoogleAuthProvider.credentialFromResult(result);
-                        const token = credential.accessToken;
+                        // const credential = GoogleAuthProvider.credentialFromResult(result);
+                        // const token = credential.accessToken;
                         
-                        console.log(credential);
-                        console.log(token);
+                        // console.log(credential);
+                        // console.log(token);
+                        console.log('User logged in successfully')
                     } )
             } )
             .catch( err => console.error( err ) )
@@ -46,6 +49,10 @@ export const AuthProvider = ( {children} ) => {
         onAuthStateChanged( auth, ( user ) => {
             if ( user )
             {
+                
+                const userRef = doc( db, 'users', user.uid );
+                setDoc( userRef, { email: user.email }, { merge: true } )
+
                 setCurrentUser({
                     id: user.uid,
                     name: user.displayName,
@@ -55,7 +62,7 @@ export const AuthProvider = ( {children} ) => {
                 });
             }
         } );
-    }, [])
+    }, [ auth, db ])
 
     const values = { signIn, logOut, currentUser };
 

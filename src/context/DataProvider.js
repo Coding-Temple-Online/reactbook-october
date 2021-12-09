@@ -1,4 +1,4 @@
-import { collection, getDocs, getFirestore } from "@firebase/firestore";
+import { collection, getDocs, getFirestore, addDoc, getDoc, orderBy, query } from "@firebase/firestore";
 import { createContext, useCallback, useEffect, useState } from "react";
 
 export const DataContext = createContext();
@@ -13,7 +13,9 @@ export const DataProvider = ( props ) => {
     const getPosts = useCallback(
         async () =>
         {
-            const querySnapshot = await getDocs(collection(db, 'posts'));
+            const q = query( collection(db, 'posts'), orderBy( "dateCreated", "desc" ) );
+            
+            const querySnapshot = await getDocs( q );
             // return querySnapshot;
             let newPosts = [];
 
@@ -31,13 +33,19 @@ export const DataProvider = ( props ) => {
         }, [ db ]
     )
 
+    const addPost = async ( postData ) => {
+        const docRef = await addDoc( collection( db, 'posts' ), postData );
+        const doc = await getDoc( docRef );
+        setPosts( [ { ...doc.data(), id: docRef.id }, ...posts ] );
+    }
+
     useEffect(() =>
     {
         getPosts();
     }, [ getPosts ])
 
     const values = {
-        posts, setPosts
+        posts, setPosts, addPost
     }
 
     return (
