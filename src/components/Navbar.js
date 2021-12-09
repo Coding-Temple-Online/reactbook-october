@@ -32,7 +32,7 @@ export const Navbar = () => {
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="." id="dropdownId" data-toggle="dropdown" aria-expanded="false">Shop</a>
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
-                            <Link className="dropdown-item" to=".">Products</Link>
+                            <Link className="dropdown-item" to="/shop/products">Products</Link>
                             <Link className="dropdown-item" to=".">Cart</Link>
                         </div>
                     </li>
