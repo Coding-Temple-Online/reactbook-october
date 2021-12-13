@@ -10,7 +10,7 @@ export const Shop = () => {
             <h1>Shop</h1>
             <hr />
 
-            <div class="card-deck">
+            <div className="card-deck">
                 { products.map( p => <Product key={ p.id } data={ p } /> ) }
             </div>
         </React.Fragment>

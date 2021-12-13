@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { DataContext } from '../context/DataProvider';
 
 export const Navbar = () => {
     const { currentUser, signIn, logOut } = useAuth();
+    const { cart } = useContext( DataContext );
 
     const handleLogin = () => {
-        // alert( 'it works' );
         signIn();
     }
 
@@ -30,10 +31,14 @@ export const Navbar = () => {
                         <Link className="nav-link" to="/contact">Contact</Link>
                     </li>
                     <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="." id="dropdownId" data-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <a className="nav-link dropdown-toggle" href="." id="dropdownId" data-toggle="dropdown" aria-expanded="false">
+                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>  Shop
+                        </a>
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
                             <Link className="dropdown-item" to="/shop/products">Products</Link>
-                            <Link className="dropdown-item" to=".">Cart</Link>
+                            <Link className="dropdown-item" to="/shop/cart">
+                                Cart <span className="badge badge-pill badge-secondary">{ cart.quantity }</span>
+                            </Link>
                         </div>
                     </li>
                 </ul>
@@ -44,7 +49,6 @@ export const Navbar = () => {
                         <li className="nav-item">
                             <Link onClick={ handleLogin } to="." className="nav-link">Login</Link>
                         </li>
-                            
                             :
                         <li className="nav-item">
                             <Link onClick={ handleLogout } to="." className="nav-link">Logout</Link>
