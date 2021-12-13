@@ -12,17 +12,17 @@ export const Product = ( props ) => {
 
     return (
         <div className="col-4">
-            <div class="card">
+            <div className="card">
                 <div className="card-header">
                     <h6>
                         { p.name }
                         <span className="float-right">${ p.price }</span>
                     </h6>
                 </div>
-                <div class="card-body">
-                    <img class="card-img-top" src={ p.images[0] } alt={ p.name } />
+                <div className="card-body">
+                    <img className="card-img-top" src={ p.images[0] } alt={ p.name } />
                     <button onClick={() => handleAddToCart( p ) } style={{ marginBottom: '25px' }} className="btn btn-success btn-block">Add to Cart</button>
-                    <p class="card-text">{ p.description }</p>
+                    <p className="card-text">{ p.description }</p>
                 </div>
             </div>
         </div>

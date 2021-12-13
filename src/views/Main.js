@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
 import { Navbar } from '../components/Navbar'
+import { Cart } from './Cart'
 import { Contact } from './Contact'
 import { Home } from './Home'
 import { PostSingle } from './PostSingle';
@@ -19,6 +20,7 @@ export const Main = () => {
                     <Route exact path='/contact' element={<Contact />} />
                     <Route path="/blog/:id" element={<PostSingle />} />
                     <Route path="/shop/products" element={<Shop />} />
+                    <Route path="/shop/cart" element={<Cart />} />
                 </Routes>
             </main>
 

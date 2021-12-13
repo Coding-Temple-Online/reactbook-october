@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { DataContext } from '../context/DataProvider';
 
 export const Navbar = () => {
     const { currentUser, signIn, logOut } = useAuth();
+    const { cart } = useContext( DataContext );
 
     const handleLogin = () => {
         // alert( 'it works' );
@@ -33,7 +35,10 @@ export const Navbar = () => {
                         <a className="nav-link dropdown-toggle" href="." id="dropdownId" data-toggle="dropdown" aria-expanded="false">Shop</a>
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
                             <Link className="dropdown-item" to="/shop/products">Products</Link>
-                            <Link className="dropdown-item" to=".">Cart</Link>
+                            <Link className="dropdown-item" to="/shop/cart">
+                                Cart
+                                <span class="badge badge-pill badge-secondary float-right">{ cart.quantity }</span>
+                            </Link>
                         </div>
                     </li>
                 </ul>
